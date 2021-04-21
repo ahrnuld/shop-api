@@ -21,4 +21,8 @@ public class ProductService {
         return products;
     }
 
+    public Product addProduct(Product product) {
+        products.add(product);
+        return product;
+    }
 }
