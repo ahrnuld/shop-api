@@ -1,6 +1,7 @@
 package nl.inholland.shop.service;
 
 import nl.inholland.shop.model.Product;
+import nl.inholland.shop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,19 +11,19 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private List<Product> products = new ArrayList<>();
+    private ProductRepository productRepository;
 
-    public ProductService() {
-        products.add(new Product(1, "Clean code", "A book about writing better code", 11.99));
-        products.add(new Product(2, "Head First Java", "Get started with Java Programming in a fun and easy to learn way", 45.00));
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     public List<Product> getAllProducts() {
-        return products;
+
+        return productRepository.findAll();
     }
 
     public Product addProduct(Product product) {
-        products.add(product);
+        productRepository.save(product);
         return product;
     }
 }
