@@ -33,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Entry points
         http.authorizeRequests()//
-                .antMatchers("/login").permitAll()//
+                .antMatchers("/login").permitAll()
+                .antMatchers("/products").permitAll()
                 .antMatchers("/h2-console/**/**").permitAll()
                 // Disallow everything else..
                 .anyRequest().authenticated();
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //http.exceptionHandling().accessDeniedPage("/login");
 
         // Apply JWT
-        http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
+     //   http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));//jwtTokenProvider));
 
         // Optional, if you want to test the API from a browser
         // http.httpBasic();
